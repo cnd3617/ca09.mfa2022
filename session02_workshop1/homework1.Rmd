@@ -1,6 +1,6 @@
 ---
 title: "Session 2: Homework 1"
-author: "Your name goes here"
+author: "Come de Germay"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -66,8 +66,8 @@ What are the variable types? Any missing values we should worry about?
 
 ```{r glimpse_skim_data}
 # YOUR CODE GOES HERE
-
-
+head(drinks, 10)
+str(drinks)
 ```
 
 
@@ -75,8 +75,15 @@ Make a plot that shows the top 25 beer consuming countries
 
 ```{r beer_plot}
 # YOUR CODE GOES HERE
+top25 = drinks %>% top_n(25,beer_servings) %>% arrange(desc(beer_servings)) 
 
-
+barplot(top25$beer_servings,names.arg=top25$country, 
+main="Top beer consuming countries",
+xlab="Country",
+ylab="Number of servings",
+col="blue",
+freq=FALSE
+)
 ```
 
 Make a plot that shows the top 25 wine consuming countries
@@ -84,14 +91,30 @@ Make a plot that shows the top 25 wine consuming countries
 ```{r wine_plot}
 
 # YOUR CODE GOES HERE
+top25 = drinks %>% top_n(25,wine_servings) %>% arrange(desc(wine_servings)) 
 
+barplot(top25$wine_servings,names.arg=top25$country, 
+main="Top wine consuming countries",
+xlab="Country",
+ylab="Number of servings",
+col="blue",
+freq=FALSE
+)
 
 ```
 
 Finally, make a plot that shows the top 25 spirit consuming countries
 ```{r spirit_plot}
 # YOUR CODE GOES HERE
+top25 = drinks %>% top_n(25,spirit_servings) %>% arrange(desc(spirit_servings)) 
 
+barplot(top25$spirit_servings,names.arg=top25$country, 
+main="Top spirit consuming countries",
+xlab="Country",
+ylab="Number of servings",
+col="blue",
+freq=FALSE
+)
 ```
 
 What can you infer from these plots? Don't just explain what's in the graph, but speculate or tell a short story (1-2 paragraphs max).
@@ -488,6 +511,7 @@ Check minus (1/5): Displays minimal effort. Doesn't complete all components. Cod
 Check (3/5): Solid effort. Hits all the elements. No clear mistakes. Easy to follow (both the code and the output). 
 
 Check plus (5/5): Finished all components of the assignment correctly and addressed both challenges. Code is well-documented (both self-documented and with additional comments as necessary). Used tidyverse, instead of base R. Graphs and tables are properly labelled. Analysis is clear and easy to follow, either because graphs are labeled clearly or you've written additional text to describe how you interpret the output.
+
 
 
 
